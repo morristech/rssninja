@@ -1,0 +1,118 @@
+<resources>
+
+    <string name="app_name">RSS Ninja</string>
+    <string name="menu_settings">Opciones</string>
+    <string name="prueba">test</string>
+    <string name="drawer_open">abrir cajón</string>
+    <string name="drawer_close">cerrar cajón</string>
+    <string name="empty"></string>
+
+    <!-- onbackpressed -->
+    <string name="exit_confirmation">Cerrar la app</string>
+    <string name="exit_confirmation_text">"¿Está seguro?"</string>
+
+    <!-- Feed Entry -->
+    <string name="entry_without_content">Sin contenido</string>
+
+    <!-- drawer list -->
+    <string name="zero">0</string>
+    <string name="drawer_popular">Artículos populares</string>
+    <string name="drawer_saved">Artículos guardados</string>
+    <string name="drawer_all">Todos</string>
+    <string name="drawer_uncategorized">Sin categoría</string>
+    <string name="about_developer">Sobre el desarrollador</string>
+
+    <!-- items list -->
+    <string name="popular">Popular</string>
+    <string name="saved_article">Artículo guardado</string>
+    <string name="unsaved_article">Artículo no guardado</string>
+
+    <!-- no internet connection message -->
+    <string name="no_internet_connection">Sin conexión a internet</string>
+
+    <!-- preferences -->
+    <string name="preferences_category_summary">En algunos cambios se auto-actualizarán los feeds</string>
+    <string name="only_unread">Sólo no leídos</string>
+    <string name="only_unread_summary">No mostrar los artículos leídos</string>
+    <string name="list_with_cards">Artículos en estilo \'cards\'</string>
+    <string name="list_with_cards_summary">Las imágenes serán más grandes</string>
+    <string name="licences">Licencias open source</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="pref_text_size">Tamaño de letra</string>
+    <string name="pref_text_size_summary">Al abrir un artículo</string>
+    <string name="text_size_small">Pequeño</string>
+    <string name="text_size_medium">Medio</string>
+    <string name="text_size_big">Grande</string>
+    <string name="text_size_very_big">Muy grande</string>
+    <string name="pref_rate_app">Puntuar RSS Ninja</string>
+    <string name="rate_app">Puntuar RSS Ninja</string>
+    <string name="rate_app_message">Parece que te gusta RSS Ninja, sería genial si lo valoraras en la Play Store. Gracias!</string>
+    <string name="rate_app_negative">Nunca</string>
+    <string name="rate_app_neutral">Ahora no</string>
+    <string name="rate_app_positive">Siii!</string>
+    <string name="error_opening_market">No se pudo abrir el market</string>
+
+    <!-- MAIN ACTION BAR -->
+    <!--  menu refresh -->
+    <string name="menu_refresh">Refrescar</string>
+    <!--  menu mark as read -->
+    <string name="menu_mark_all_read">Marcar todos como leídos</string>
+    <!-- marked as read success message -->
+    <string name="marked_all_as_read_success_message">Marcados todos como leídos</string>
+
+
+    <!-- ENTRY ACTION BAR -->
+    <!-- share -->
+    <string name="entry_menu_share">Compartir</string>
+    <!-- share dialog text after share clicked  -->
+    <string name="share_text">Compartir vía</string>
+    <!-- mark unread  -->
+    <string name="entry_menu_mark_unread">Marcar como no leído</string>
+    <!-- open in browser  -->
+    <string name="open_in_browser">Abrir en navegador</string>
+    <!-- mark saved  -->
+    <string name="mark_saved">Guardar</string>
+    <!-- mark unsaved  -->
+    <string name="mark_unsaved">No guardar</string>
+
+
+    <!-- Message to show when cliked on keep as unread -->
+    <string name="kept_as_unread">Dejar como no leído</string>
+    <string name="marked_as_read">Marcado como leído</string>
+    <string name="marked_as_unread">Marcado como no leído</string>
+
+    <!-- ERRORS -->
+    <string name="parsing_subscriptions_exception">Error parseando las suscripciones</string>
+    <string name="receiving_subscriptions_exception">Error rececibiendo suscripciones</string>
+    <string name="receiving_unread_subscriptions_exception">Error recibiendo las suscripciones no leídas</string>
+    <string name="error_login">Fallo al iniciar sesión</string>
+    <string name="error_loading_entry">Error al cargar el artículo</string>
+    <string name="error_marking_entry">Error marcando el artículo</string>
+    <string name="error_marking_all_as_read">Error al marcar como leídos</string>
+    <string name="generic_exception">Error</string>
+
+    <!-- licences -->
+    <string name="licencing_text">Feedly Ninja</string>
+    <string name="licences_text"><![CDATA[
+        Gracias a estos proyectos open source:<br><br>
+
+        <b><a href="http://actionbarsherlock.com/">ActionBarSherlock</a>&nbsp;</b><br>
+        <i>de Jake Wharton</i><br><br>
+
+        <b><a href="https://android.googlesource.com/platform/frameworks/volley">Volley</a>&nbsp;</b><br>
+        <i>de Google</i><br><br>        
+        
+        <b><a href="http://square.github.io/okhttp/">OkHttp</a>&nbsp;</b><br>
+        <i>de Square</i><br><br>
+        
+        <b><a href="https://github.com/Kopfgeldjaeger/RateMeMaybe">RateMeMaybe</a>&nbsp;</b><br>
+        <br>
+        
+        <b><a href="http://androidannotations.org/">Android Annotations</a>&nbsp;</b><br>
+        <i>de Excilis</i><br><br>
+        
+    ]]></string>
+    <string name="about_version_template">v%1$s</string>
+
+
+</resources>

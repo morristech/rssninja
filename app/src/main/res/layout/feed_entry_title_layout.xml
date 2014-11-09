@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/feed_entry_title_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null">
+
+    <!--         <com.android.volley.toolbox.NetworkImageView -->
+    <!--             android:id="@+id/entry_bg_image_view" -->
+    <!--             android:layout_width="match_parent" -->
+    <!--             android:layout_height="match_parent" -->
+    <!--             android:maxHeight="50dp" -->
+    <!--             android:scaleType="centerCrop" /> -->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A000"
+        android:gravity="bottom"
+        android:minHeight="80dp"
+        android:paddingEnd="3dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="3dp"
+        android:paddingStart="5dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/entry_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="@string/empty"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/entry_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_title"
+            android:layout_marginEnd="120dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="start"
+            android:singleLine="true"
+            android:text="@string/empty"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/entry_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/entry_title"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/empty"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/entry_date"
+            android:background="#F555" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/entry_bg_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
+    <com.yairkukielka.rssninja.TolerantScrollView
+        android:id="@+id/scroll_view_entry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/transparent_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@null"></View>
+
+            <LinearLayout
+                android:id="@+id/entry_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/feed_entry_title_layout" />
+
+                <FrameLayout
+                    android:id="@+id/frame_webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:id="@+id/entry_webview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/black" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.yairkukielka.rssninja.TolerantScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yairkukielka.rssninja" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name="com.yairkukielka.rssninja.app.App"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RssNinja.Dark">
+        <activity
+            android:name="com.yairkukielka.rssninja.main.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- A child of the main activity -->
+        <activity
+            android:name="com.yairkukielka.rssninja.FeedEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity android:name="com.yairkukielka.rssninja.settings.PreferencesActivity" />
+        <activity android:name="com.yairkukielka.rssninja.login.LoginActivity" />
+        <activity android:name="com.yairkukielka.rssninja.settings.LicencesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".settings.PreferencesActivity" />
+        </activity>
+
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="3a6f255eaec73bceb0c9219b19a78fa2c21bcc11"/>
+
+    </application>
+
+</manifest>

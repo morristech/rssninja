@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".FeedEntryActivity">
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_action_share"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/entry_menu_share" />
+    <item
+        android:id="@+id/action_mark_saved"
+        android:icon="@drawable/star_big_off"
+        android:orderInCategory="200"
+        android:showAsAction="ifRoom"
+        android:title="@string/mark_saved" />
+    <item
+        android:id="@+id/action_open_in_browser"
+        android:icon="@drawable/ic_open_in_browser"
+        android:orderInCategory="300"
+        android:showAsAction="ifRoom"
+        android:title="@string/open_in_browser" />
+    <item
+        android:id="@+id/action_mark_unread"
+        android:icon="@drawable/ic_menu_mark_unread"
+        android:orderInCategory="400"
+        android:showAsAction="ifRoom"
+        android:title="@string/entry_menu_mark_unread" />
+</menu>
