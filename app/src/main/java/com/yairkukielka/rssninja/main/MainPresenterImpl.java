@@ -24,7 +24,7 @@ package com.yairkukielka.rssninja.main;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.yairkukielka.rssninja.AppData;
+import com.yairkukielka.rssninja.data.AppData;
 import com.yairkukielka.rssninja.R;
 import com.yairkukielka.rssninja.app.App;
 import com.yairkukielka.rssninja.common.Constants;

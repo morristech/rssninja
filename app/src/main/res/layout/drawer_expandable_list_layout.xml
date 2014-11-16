@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C111"
+    android:orientation="vertical">
+
+    <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_about_developer"
+            style="@style/backgroundActivated.minHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:paddingEnd="16dp"
+            android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
+            android:text="@string/about_developer"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ExpandableListView
+        android:id="@+id/expandable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice" />
+
+</LinearLayout>

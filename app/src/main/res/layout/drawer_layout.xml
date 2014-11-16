@@ -1,4 +1,6 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main.MainActivity"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,43 +24,21 @@
             android:layout_gravity="center"
             android:visibility="gone" />
     </FrameLayout>
+
+
     <!-- The navigation drawer -->
 
-    <LinearLayout
-        android:id="@+id/linear_layout"
-        android:layout_width="260dp"
-        android:layout_height="match_parent"
+    <!-- android:layout_gravity="start" tells DrawerLayout to treat
+             this as a sliding drawer on the left side for left-to-right
+             languages and on the right side for right-to-left languages.
+             If you're not building against API 17 or higher, use
+             android:layout_gravity="left" instead. -->
+    <!-- The drawer is given a fixed width in dp and extends the full height of
+         the container. -->
+    <fragment android:id="@+id/navigation_drawer"
+        android:layout_width="@dimen/navigation_drawer_width" android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#C111"
-        android:orientation="vertical">
+        android:name="com.yairkukielka.rssninja.main.NavigationDrawerFragment"
+        tools:layout="@layout/drawer_expandable_list_layout"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_about_developer"
-                style="@style/backgroundActivated.minHeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:fontFamily="sans-serif"
-                android:gravity="center_vertical"
-                android:paddingEnd="16dp"
-                android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-                android:paddingRight="16dp"
-                android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-                android:text="@string/about_developer"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <ExpandableListView
-            android:id="@+id/expandable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:choiceMode="singleChoice" />
-
-    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -34,8 +34,9 @@ import dagger.Provides;
 @Module(
         injects = {
                 MainActivity.class,
-                EntryListFragment.class
-//                ListViewEntryArrayAdapter.class
+                EntryListFragment.class,
+                NavigationDrawerFragment.class,
+                DeveloperFragment.class
         },
         addsTo = AppModule.class
 )

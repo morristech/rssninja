@@ -1,33 +1,45 @@
-package com.yairkukielka.rssninja;
+package com.yairkukielka.rssninja.main;
 
 
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.yairkukielka.rssninja.R;
+import com.yairkukielka.rssninja.app.App;
+import com.yairkukielka.rssninja.common.BaseFragment;
+import com.yairkukielka.rssninja.feedly.Category;
+import com.yairkukielka.rssninja.feedly.Subscription;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends BaseFragment {
 
     /**
      * Remember the position of the selected item.
@@ -50,10 +62,16 @@ public class NavigationDrawerFragment extends Fragment {
      */
     private ActionBarDrawerToggle mDrawerToggle;
 
+    @Inject
+    App application;
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
+    @InjectView(R.id.expandable)
+    ExpandableListView mDrawerListView;
+    View rootView;
+    @InjectView(R.id.tv_about_developer)
+    TextView tvAboutDeveloper;
     private View mFragmentContainerView;
-
+    private ExpandableListAdapter drawerListAdapter;
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
@@ -75,8 +93,6 @@ public class NavigationDrawerFragment extends Fragment {
             mFromSavedInstanceState = true;
         }
 
-        // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
     }
 
     @Override
@@ -87,30 +103,31 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
-            }
-        });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{"section1", "section2", "section3"
-                }));
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-        return mDrawerListView;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        rootView = inflater.inflate(R.layout.drawer_expandable_list_layout, container, false);
+        ButterKnife.inject(this, rootView);
+        tvAboutDeveloper.setOnClickListener(mAboutDeveloperOnClickListener);
+        return rootView;
     }
 
+    /**
+     * Returns if the drawer is open
+     * @return True if the drawer is open
+     */
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
     }
 
+    /**
+     * Open drawer
+     */
+    public void openDrawer() {
+        if (mDrawerLayout != null && mFragmentContainerView != null) {
+            mDrawerLayout.openDrawer(mFragmentContainerView);
+        }
+    }
     /**
      * Users of this fragment must call this method to set up the navigation drawer interactions.
      *
@@ -182,20 +199,89 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setFocusableInTouchMode(false);
+
+        setAdapter();
     }
 
-    private void selectItem(int position) {
-        mCurrentSelectedPosition = position;
-        if (mDrawerListView != null) {
-            mDrawerListView.setItemChecked(position, true);
+    public void setAdapter() {
+        drawerListAdapter = new ExpandableListAdapter(
+                getActivity(), getCategories(), getCategorySubscriptionsMap());
+
+        mDrawerListView.setAdapter(drawerListAdapter);
+        // Listview on child click listener
+        mDrawerListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                selectItem(parent, groupPosition, childPosition);
+                int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForGroup(groupPosition));
+                parent.setItemChecked(index, true);
+                return true;
+            }
+        });
+        // Listview on child click listener
+        mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                selectItem(parent, groupPosition);
+                int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForGroup(groupPosition));
+                parent.setItemChecked(index, true);
+                return false;
+            }
+        });
+
+    }
+
+    /**
+     * Listener for the 'about developer' item
+     */
+    private final View.OnClickListener mAboutDeveloperOnClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            if (v == tvAboutDeveloper) {
+                if (mCallbacks != null) {
+                    mCallbacks.onNavigationDrawerAboutDeveloperSelected();
+                }
+                mDrawerLayout.closeDrawer(mFragmentContainerView);
+
+            }
         }
+    };
+
+    /**
+     * Notify the adapter
+     */
+    public void notifyDataSetChanged() {
+        drawerListAdapter.notifyDataSetChanged();
+    }
+
+    private List<Category> getCategories() {
+        return application.getAppData().getCategories();
+    }
+
+    private HashMap<String, List<Subscription>> getCategorySubscriptionsMap() {
+        return application.getAppData().getCategorySubscriptionsMap();
+    }
+
+    private void selectItem(ExpandableListView parent, int groupPosition, int childPosition) {
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(groupPosition, childPosition);
         }
+        int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForGroup(groupPosition));
+        parent.setItemChecked(index, true);
+    }
+
+
+    private void selectItem(ExpandableListView parent, int groupPosition) {
+        if (mCallbacks != null) {
+            mCallbacks.onNavigationDrawerGroupSelected(groupPosition);
+        }
+        int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForGroup(groupPosition));
+        parent.setItemChecked(index, true);
     }
 
     @Override
@@ -274,6 +360,14 @@ public class NavigationDrawerFragment extends Fragment {
         /**
          * Called when an item in the navigation drawer is selected.
          */
-        void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemSelected(int groupPosition, int childPosition);
+        /**
+         * Called when an item in the navigation drawer is selected.
+         */
+        void onNavigationDrawerGroupSelected(int groupPosition);
+        /**
+         * Called when an item in the navigation drawer is selected.
+         */
+        void onNavigationDrawerAboutDeveloperSelected();
     }
 }

@@ -1,4 +1,4 @@
-package com.yairkukielka.rssninja;
+package com.yairkukielka.rssninja.main;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,10 +12,14 @@ import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.yairkukielka.rssninja.LoadingFragment;
+import com.yairkukielka.rssninja.R;
+import com.yairkukielka.rssninja.common.BaseFragment;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class DeveloperFragment extends Fragment {
+public class DeveloperFragment extends BaseFragment {
     private static final String ABOUT_ME_URL = "http://www.about.me/yair.kukielka";
     @InjectView(R.id.developer_webview)
     WebView webView;
@@ -49,7 +53,7 @@ public class DeveloperFragment extends Fragment {
                 if (getActivity() != null) {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
-                        fragmentManager.beginTransaction().remove(loadingFragment).addToBackStack(null).commitAllowingStateLoss();
+                        fragmentManager.beginTransaction().remove(loadingFragment).commitAllowingStateLoss();
                     }
                 }
                 webView.setAnimation(webViewAnimation);

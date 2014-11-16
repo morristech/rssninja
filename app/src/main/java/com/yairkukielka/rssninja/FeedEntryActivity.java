@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.anprosit.android.dagger.ui.DaggerFragmentActivity;
 import com.yairkukielka.rssninja.app.App;
 import com.yairkukielka.rssninja.app.MyVolley;
+import com.yairkukielka.rssninja.data.AppData;
 import com.yairkukielka.rssninja.common.Constants;
 import com.yairkukielka.rssninja.feedly.FeedlyConstants;
 import com.yairkukielka.rssninja.feedly.ListEntry;

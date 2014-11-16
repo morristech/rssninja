@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.yairkukielka.rssninja.FeedEntryActivity;
-import com.yairkukielka.rssninja.ListViewEntryArrayAdapter;
+import com.yairkukielka.rssninja.main.ListViewEntryArrayAdapter;
 import com.yairkukielka.rssninja.feedly.FeedlyModule;
 import com.yairkukielka.rssninja.interactors.InteractorsModule;
 import com.yairkukielka.rssninja.login.LoginActivity;

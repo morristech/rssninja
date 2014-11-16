@@ -17,7 +17,7 @@
 package com.yairkukielka.rssninja.app;
 
 import com.anprosit.android.dagger.application.DaggerApplication;
-import com.yairkukielka.rssninja.AppData;
+import com.yairkukielka.rssninja.data.AppData;
 
 import java.util.Arrays;
 import java.util.List;

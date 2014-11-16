@@ -30,9 +30,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
-import com.yairkukielka.rssninja.AppData;
+import com.yairkukielka.rssninja.data.AppData;
 import com.yairkukielka.rssninja.FeedEntryActivity;
-import com.yairkukielka.rssninja.ListViewEntryArrayAdapter;
 import com.yairkukielka.rssninja.R;
 import com.yairkukielka.rssninja.app.App;
 import com.yairkukielka.rssninja.app.Tools;

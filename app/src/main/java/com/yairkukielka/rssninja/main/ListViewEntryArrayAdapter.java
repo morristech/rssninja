@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yairkukielka.rssninja;
+package com.yairkukielka.rssninja.main;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,11 +34,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.yairkukielka.rssninja.R;
 import com.yairkukielka.rssninja.feedly.ItemType;
 import com.yairkukielka.rssninja.feedly.ListEntry;
 import com.yairkukielka.rssninja.feedly.MarkAction;
-import com.yairkukielka.rssninja.main.MainPresenter;
-import com.yairkukielka.rssninja.main.MainView;
 import com.yairkukielka.rssninja.settings.PreferencesActivity;
 import com.yairkukielka.rssninja.toolbox.DateUtils;
 
